@@ -1,5 +1,6 @@
 import React from "react";
 import BookList from "./components/BookList";
+import AddBook from "./components/AddBook";
 
 function App() {
   return (
@@ -7,6 +8,7 @@ function App() {
       <h1>GraphQL / React Reading List</h1>
       <hr />
       <BookList />
+      <AddBook />
     </div>
   );
 }
