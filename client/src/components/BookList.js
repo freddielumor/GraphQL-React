@@ -11,8 +11,8 @@ export default function BookList() {
   if (error) return <p>ERROR</p>;
 
   return (
-    <div>
-      <ul className="bookList">
+    <div className="BookList">
+      <ul className="BookList__list">
         {data.books.map((book) => {
           return (
             <li key={book.id} onClick={() => setBookId(book.id)}>
@@ -21,7 +21,7 @@ export default function BookList() {
           );
         })}
       </ul>
-      <BookDetails bookId={bookId} />
+      {!bookId ? <p>No Book Selected...</p> : <BookDetails bookId={bookId} />}
     </div>
   );
 }

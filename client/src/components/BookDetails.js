@@ -37,7 +37,7 @@ export default function BookDetails({ bookId }) {
   };
 
   return (
-    <div>
+    <div className="BookDetails">
       <h2>Book Details</h2>
       {renderBookDetails()}
     </div>

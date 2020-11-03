@@ -43,19 +43,19 @@ export default function AddBook() {
   };
 
   return (
-    <form id="addBook__form" onSubmit={handleFormSubmit}>
-      <div>
-        <label>Name</label>
+    <form className="AddBook__form" onSubmit={handleFormSubmit}>
+      <div className="AddBook__field">
+        <label>Name: </label>
         <input type="text" onChange={handleSetBookName} />
       </div>
 
-      <div>
-        <label>Genre</label>
+      <div className="AddBook__field">
+        <label>Genre: </label>
         <input type="text" onChange={handleSetBookGenre} />
       </div>
 
-      <div>
-        <label>Author</label>
+      <div className="AddBook__field">
+        <label>Author: </label>
         <select onChange={handleSetBookAuthor}>
           <option value="">Select Author</option>
           {data.authors.map((author) => {
@@ -68,8 +68,12 @@ export default function AddBook() {
         </select>
       </div>
 
-      <button type="submit" disabled={!bookName || !bookGenre || !bookAuthor}>
-        Add Book
+      <button
+        className="AddBook__submit"
+        type="submit"
+        disabled={!bookName || !bookGenre || !bookAuthor}
+      >
+        +
       </button>
     </form>
   );
