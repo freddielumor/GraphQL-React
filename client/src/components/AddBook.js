@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { useQuery, useMutation } from "@apollo/client";
-import { GET_AUTHORS_QUERY, ADD_BOOK_MUTATION } from "../queries/queries";
+import {
+  GET_AUTHORS_QUERY,
+  ADD_BOOK_MUTATION,
+  GET_BOOKS_QUERY,
+} from "../queries/queries";
 
 export default function AddBook() {
   const [bookName, setBookName] = useState("");
@@ -30,6 +34,7 @@ export default function AddBook() {
     // Send data to BE
     addBook({
       variables: { name: bookName, genre: bookGenre, authorid: bookAuthor },
+      refetchQueries: [{ query: GET_BOOKS_QUERY }], // Refetch queries after mutation
     });
 
     setBookName("");
