@@ -1,14 +1,6 @@
 import React, { useState } from "react";
-import { gql, useQuery } from "@apollo/client";
-
-const GET_AUTHORS_QUERY = gql`
-  query {
-    authors {
-      name
-      id
-    }
-  }
-`;
+import { useQuery } from "@apollo/client";
+import { GET_AUTHORS_QUERY } from "../queries/queries";
 
 export default function AddBook() {
   const [bookName, setBookName] = useState("");
@@ -58,10 +50,10 @@ export default function AddBook() {
       <div>
         <label>Author</label>
         <select onChange={handleSetBookAuthor}>
-          <option>Select Author</option>
+          <option value="">Select Author</option>
           {data.authors.map((author) => {
             return (
-              <option key={author.id} value={author.name}>
+              <option key={author.id} value={author.id}>
                 {author.name}
               </option>
             );
@@ -69,7 +61,9 @@ export default function AddBook() {
         </select>
       </div>
 
-      <input type="submit" />
+      <button type="submit" disabled={!bookName || !bookGenre || !bookAuthor}>
+        Add Book
+      </button>
     </form>
   );
 }
