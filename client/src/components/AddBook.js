@@ -1,12 +1,13 @@
 import React, { useState } from "react";
-import { useQuery } from "@apollo/client";
-import { GET_AUTHORS_QUERY } from "../queries/queries";
+import { useQuery, useMutation } from "@apollo/client";
+import { GET_AUTHORS_QUERY, ADD_BOOK_MUTATION } from "../queries/queries";
 
 export default function AddBook() {
   const [bookName, setBookName] = useState("");
   const [bookGenre, setBookGenre] = useState("");
   const [bookAuthor, setBookAuthor] = useState("");
   const { loading, error, data } = useQuery(GET_AUTHORS_QUERY);
+  const [addBook] = useMutation(ADD_BOOK_MUTATION);
 
   if (loading) return <p>LOADING.....</p>;
   if (error) return <p>ERROR</p>;
@@ -27,13 +28,14 @@ export default function AddBook() {
     e.preventDefault();
 
     // Send data to BE
-    console.log("Submit Form!");
-  };
+    addBook({
+      variables: { name: bookName, genre: bookGenre, authorid: bookAuthor },
+    });
 
-  console.log(data);
-  console.log("bookName", bookName);
-  console.log("bookGenre", bookGenre);
-  console.log("bookAuthor", bookAuthor);
+    setBookName("");
+    setBookGenre("");
+    setBookAuthor("");
+  };
 
   return (
     <form id="addBook__form" onSubmit={handleFormSubmit}>
